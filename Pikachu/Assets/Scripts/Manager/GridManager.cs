@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GridManager : MonoBehaviour
@@ -8,15 +9,17 @@ public class GridManager : MonoBehaviour
     [SerializeField] private Tile tile;
     [SerializeField] private Camera cam;
 
+    public static GridManager instance;
+
     private Dictionary<Vector2, Tile> tiles;
 
-
-    private void Start()
+    private void Awake()
     {
-        GenerateGrid();
+        instance = this;
+        tiles = new Dictionary<Vector2, Tile>();
     }
 
-    private void GenerateGrid()
+    public void GenerateGrid()
     {
         for (int i = 0; i < width; ++i)
         {
@@ -31,7 +34,8 @@ public class GridManager : MonoBehaviour
                 tiles[new Vector2(i, j)] = spawnedTile;
             }
         }
-        cam.transform.position = new Vector3((float)width / 2 - 0.5f, (float)height / 2 - 0.5f, -10) ;
+        cam.transform.position = new Vector3((float)width/2 - 0.5f, (float)height/2 - 0.5f, -10);
+        GameManager.instance.ChangeState(GameState.SpawnBall);
     }
 
     public Tile GetTileAtPosition (Vector2 pos)
@@ -41,5 +45,10 @@ public class GridManager : MonoBehaviour
             return tile;
         }
         return null;
+    }
+
+    public Tile GetSpawnedTile()
+    {
+        return tiles.Where(t => t.Value.Walkable).OrderBy(t => Random.value).First().Value;
     }
 }

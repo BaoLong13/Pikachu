@@ -8,6 +8,9 @@ public class Tile : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private GameObject highlight;
 
+    public BaseUnit occupiedUnit;
+
+    public bool Walkable => occupiedUnit == null;
 
     public void Init(bool isOffSet)
     {
@@ -15,6 +18,8 @@ public class Tile : MonoBehaviour
                                new Color(baseColor.r, baseColor.g, baseColor.b) : 
                                new Color(offsetColor.r, offsetColor.g, offsetColor.b);    
     }
+
+
 
     private void OnMouseEnter()
     {
@@ -24,5 +29,22 @@ public class Tile : MonoBehaviour
     private void OnMouseExit()
     {
         highlight.SetActive(false);
+    }
+
+    private void OnMouseDown()
+    {
+       
+    }
+
+    public void SetUnit(BaseUnit unit)
+    {
+        if (unit.occupiedTile != null)
+        {
+            unit.occupiedTile.occupiedUnit = null;
+        }
+
+        unit.transform.position = transform.position;
+        occupiedUnit = unit;
+        unit.occupiedTile = this;
     }
 }

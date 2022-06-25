@@ -23,10 +23,13 @@ public class GameManager : MonoBehaviour
         switch (newState)
         {
             case GameState.GenerateGrid:
+                GridManager.instance.GenerateGrid();
                 break;
             case GameState.SpawnBall:
+                UnitManager.instance.SpawnBall();
                 break;
             case GameState.SpawnQueueBall:
+                UnitManager.instance.SpawnQueueBall();
                 break;
             case GameState.StartTurn:
                 break;
