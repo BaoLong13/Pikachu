@@ -44,7 +44,7 @@ public class UnitManager : MonoBehaviour
         GameManager.instance.ChangeState(GameState.StartTurn);
     }
 
-    private T GetRandomUnit<T>(Type type) where T : BaseUnit
+    private T GetRandomUnit<T>(Type type) where T : BaseBall
     {
         return (T) units.Where(u => u.unitType == type).OrderBy(o => Random.value).First().unitPrefab;
     }

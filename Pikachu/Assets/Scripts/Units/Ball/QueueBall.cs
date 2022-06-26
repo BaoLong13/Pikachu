@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class QueueBall : BaseBall
 {
-    // Start is called before the first frame update
+    public SpriteRenderer spriteRenderer;
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 }

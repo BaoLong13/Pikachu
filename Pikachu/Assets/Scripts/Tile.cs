@@ -8,7 +8,7 @@ public class Tile : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private GameObject highlight;
 
-    public BaseUnit occupiedUnit;
+    public BaseBall occupiedUnit;
 
     public bool Walkable => occupiedUnit == null;
 
@@ -36,7 +36,7 @@ public class Tile : MonoBehaviour
        
     }
 
-    public void SetUnit(BaseUnit unit)
+    public void SetUnit(BaseBall unit)
     {
         if (unit.occupiedTile != null)
         {

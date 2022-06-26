@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class ColorBall : BaseBall
 {
-    // Start is called before the first frame update
+    public SpriteRenderer spriteRenderer;
     void Start()
     {
-        
+       spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

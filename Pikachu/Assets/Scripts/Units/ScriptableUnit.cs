@@ -7,7 +7,8 @@ using UnityEngine;
 public class ScriptableUnit : ScriptableObject
 {
     public Type unitType;
-    public BaseUnit unitPrefab;
+    public BaseBall unitPrefab;
+    public Color ColorPrefab;
 }
 
 public enum Type
