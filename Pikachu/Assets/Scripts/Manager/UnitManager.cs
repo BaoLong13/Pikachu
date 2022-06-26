@@ -7,6 +7,8 @@ public class UnitManager : MonoBehaviour
 {
     public static UnitManager instance;
 
+    public BaseBall selectedBall;
+
     private List<ScriptableUnit> units;
 
     private void Awake()
@@ -47,5 +49,10 @@ public class UnitManager : MonoBehaviour
     private T GetRandomUnit<T>(Type type) where T : BaseBall
     {
         return (T) units.Where(u => u.unitType == type).OrderBy(o => Random.value).First().unitPrefab;
+    }
+
+    public void SetSelectedBall(BaseBall ball)
+    {
+        selectedBall = ball;
     }
 }

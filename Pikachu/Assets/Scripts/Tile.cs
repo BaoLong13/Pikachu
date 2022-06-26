@@ -33,7 +33,35 @@ public class Tile : MonoBehaviour
 
     private void OnMouseDown()
     {
-       
+        if (GameManager.instance.gameState != GameState.StartTurn)
+        {
+            return;
+        }
+
+        if (occupiedUnit != null)
+        {
+            if (occupiedUnit.type != Type.QueueBall)
+            {
+                UnitManager.instance.SetSelectedBall(occupiedUnit);
+            }
+        }
+        else
+        {
+            if (UnitManager.instance.selectedBall != null)
+            {
+                if (UnitManager.instance.selectedBall.transform.position.x - this.transform.position.x != 0 
+                    && UnitManager.instance.selectedBall.transform.position.y - this.transform.position.y != 0)
+                {
+                    Debug.Log("Invalid Move");
+                }
+                else if (UnitManager.instance.selectedBall.transform.position.x - this.transform.position.x != 0 
+                    || UnitManager.instance.selectedBall.transform.position.y - this.transform.position.y != 0)
+                {
+                    SetUnit(UnitManager.instance.selectedBall);
+                    UnitManager.instance.SetSelectedBall(null);
+                }
+            }
+        }
     }
 
     public void SetUnit(BaseBall unit)
