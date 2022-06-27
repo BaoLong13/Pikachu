@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class ColorBall : BaseBall
 {
-    public SpriteRenderer spriteRenderer;
-    void Start()
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    public SpriteRenderer GetSpriteRenderer()
     {
-       spriteRenderer = GetComponent<SpriteRenderer>();
+        return spriteRenderer;
     }
-
 }

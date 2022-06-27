@@ -28,12 +28,11 @@ public class GameManager : MonoBehaviour
             case GameState.SpawnBall:
                 UnitManager.instance.SpawnBall();
                 break;
-            case GameState.SpawnQueueBall:
+            case GameState.StartTurn:
                 UnitManager.instance.SpawnQueueBall();
                 break;
-            case GameState.StartTurn:
-                break;
             case GameState.EndTurn:
+                UnitManager.instance.DequeueBall();
                 break;
             case GameState.Lose:
                 break;

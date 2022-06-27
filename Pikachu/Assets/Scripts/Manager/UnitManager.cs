@@ -10,6 +10,7 @@ public class UnitManager : MonoBehaviour
     public BaseBall selectedBall;
 
     private List<ScriptableUnit> units;
+    public List<BaseBall> queuedBalls;
 
     private void Awake()
     {
@@ -28,7 +29,7 @@ public class UnitManager : MonoBehaviour
 
             randomSpawnedTile.SetUnit(spawnedBall);
         }
-        GameManager.instance.ChangeState(GameState.SpawnQueueBall);
+        GameManager.instance.ChangeState(GameState.StartTurn);
     }
     
     public void SpawnQueueBall()
@@ -40,12 +41,27 @@ public class UnitManager : MonoBehaviour
             var spawnedBall = Instantiate(randomPrefab);
             var randomSpawnedTile = GridManager.instance.GetSpawnedTile();
 
-            spawnedBall.transform.position = randomSpawnedTile.transform.position;
+            queuedBalls.Add(spawnedBall);
+
+            randomSpawnedTile.SetUnit(spawnedBall);
 
         }
+    }
+    public void DequeueBall()
+    {
+        foreach (BaseBall ball in queuedBalls)
+        {
+            if (ball != null)
+            {
+                BaseBall newBall = ball;
+                newBall.transform.localScale = Vector3.one;
+                newBall.type = Type.Ball;
+                ball.occupiedTile.SetUnit(newBall);
+            }
+        }
+        queuedBalls.Clear();
         GameManager.instance.ChangeState(GameState.StartTurn);
     }
-
     private T GetRandomUnit<T>(Type type) where T : BaseBall
     {
         return (T) units.Where(u => u.unitType == type).OrderBy(o => Random.value).First().unitPrefab;

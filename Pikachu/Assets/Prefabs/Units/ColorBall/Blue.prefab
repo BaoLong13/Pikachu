@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8178052733143255461}
   - component: {fileID: 8178052733143255458}
-  - component: {fileID: -5941397048804874597}
+  - component: {fileID: -6720343539040109299}
   m_Layer: 6
   m_Name: Blue
   m_TagString: Untagged
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 6
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.09308624, g: 0, b: 1, a: 0.74509805}
+  m_Color: {r: 0.09308624, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-5941397048804874597
+--- !u!114 &-6720343539040109299
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,4 +99,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   occupiedTile: {fileID: 0}
   type: 0
-  spriteRenderer: {fileID: 0}
+  spriteRenderer: {fileID: 8178052733143255458}

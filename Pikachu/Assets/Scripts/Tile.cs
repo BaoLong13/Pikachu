@@ -29,9 +29,9 @@ public class Tile : MonoBehaviour
             {
                 for (float i = startPoint.x + 1; i < startPoint.x + offSetX; ++i)
                 {
-                    if (GridManager.instance.GetTileAtPosition(new Vector2(i, startPoint.y)).occupiedUnit != null)
+                    BaseBall currUnit = GridManager.instance.GetTileAtPosition(new Vector2(i, startPoint.y)).occupiedUnit;
+                    if (currUnit != null && currUnit.type != Type.QueueBall)
                     {
-                        Debug.Log(GridManager.instance.GetTileAtPosition(new Vector2(i, startPoint.y)).occupiedUnit != null);
                         return false;
                     }
                 }
@@ -40,9 +40,9 @@ public class Tile : MonoBehaviour
             {
                 for (float i = startPoint.x - 1; i > startPoint.x + offSetX; --i)
                 {
-                    if (GridManager.instance.GetTileAtPosition(new Vector2(i, startPoint.y)).occupiedUnit != null)
+                    BaseBall currUnit = GridManager.instance.GetTileAtPosition(new Vector2(i, startPoint.y)).occupiedUnit;
+                    if ( currUnit != null && currUnit.type != Type.QueueBall)
                     {
-                        Debug.Log(GridManager.instance.GetTileAtPosition(new Vector2(i, startPoint.y)).occupiedUnit != null);
                         return false;
                     }
                 }
@@ -54,9 +54,10 @@ public class Tile : MonoBehaviour
             {
                 for (float j = startPoint.y + 1; j < startPoint.y + offSetY; ++j)
                 {
-                    if (GridManager.instance.GetTileAtPosition(new Vector2(startPoint.x, j)).occupiedUnit != null)
+                    BaseBall currUnit = GridManager.instance.GetTileAtPosition(new Vector2(startPoint.x, j)).occupiedUnit;
+                    if ( currUnit != null && currUnit.type != Type.QueueBall)
                     {
-                        return false;
+                        return false; 
                     }
                 }
             }
@@ -64,7 +65,8 @@ public class Tile : MonoBehaviour
             {
                 for (float j = startPoint.y - 1; j > startPoint.y + offSetY; --j)
                 {
-                    if (GridManager.instance.GetTileAtPosition(new Vector2(startPoint.x, j)).occupiedUnit != null)
+                    BaseBall currUnit = GridManager.instance.GetTileAtPosition(new Vector2(startPoint.x, j)).occupiedUnit;
+                    if ( currUnit != null && currUnit.type != Type.QueueBall)
                     {
                         return false;
                     }
@@ -119,7 +121,6 @@ public class Tile : MonoBehaviour
 
                 else if (offSetX != 0 || offSetY != 0)
                 {
-                    Debug.Log(IsMoveValid(startPoint, endPoint, offSetX, offSetY));
                     if (IsMoveValid(startPoint, endPoint, offSetX, offSetY))
                     {
                         SetUnit(UnitManager.instance.selectedBall);
@@ -129,6 +130,7 @@ public class Tile : MonoBehaviour
                     {
                         Debug.Log("Invalid Move");
                     }
+                    GameManager.instance.ChangeState(GameState.EndTurn);
                 }
 
             }

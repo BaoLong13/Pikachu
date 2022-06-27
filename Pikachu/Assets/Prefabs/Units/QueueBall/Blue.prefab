@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8178052733143255461}
   - component: {fileID: 8178052733143255458}
-  - component: {fileID: -8168361010188441520}
+  - component: {fileID: 544380612325541616}
   m_Layer: 7
   m_Name: Blue
   m_TagString: Untagged
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-8168361010188441520
+--- !u!114 &544380612325541616
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,4 +99,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   occupiedTile: {fileID: 0}
   type: 1
-  spriteRenderer: {fileID: 0}
+  spriteRenderer: {fileID: 8178052733143255458}

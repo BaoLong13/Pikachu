@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class QueueBall : BaseBall
 {
-    public SpriteRenderer spriteRenderer;
-    void Start()
+    [SerializeField] private SpriteRenderer spriteRenderer;
+
+    public SpriteRenderer GetSpriteRenderer()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        return spriteRenderer;
     }
 }

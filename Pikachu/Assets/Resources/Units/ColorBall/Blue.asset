@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Blue
   m_EditorClassIdentifier: 
   unitType: 0
-  unitPrefab: {fileID: -5941397048804874597, guid: f72559585109be64280b53c617476338, type: 3}
+  unitPrefab: {fileID: -6720343539040109299, guid: f72559585109be64280b53c617476338, type: 3}
+  ColorPrefab: {r: 0.09411765, g: 0, b: 1, a: 1}
