@@ -8,7 +8,6 @@ public class ScriptableUnit : ScriptableObject
 {
     public Type unitType;
     public BaseBall unitPrefab;
-    public Color ColorPrefab;
 }
 
 public enum Type

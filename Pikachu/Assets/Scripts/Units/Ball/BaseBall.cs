@@ -6,4 +6,5 @@ public class BaseBall : MonoBehaviour
 {
     public Tile occupiedTile;
     public Type type;
+    public SpriteRenderer spriteRenderer;
 }

@@ -330,6 +330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedBall: {fileID: 0}
+  queuedBalls: []
 --- !u!4 &1890589328
 Transform:
   m_ObjectHideFlags: 0

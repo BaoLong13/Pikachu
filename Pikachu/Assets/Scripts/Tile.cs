@@ -19,7 +19,7 @@ public class Tile : MonoBehaviour
                                new Color(offsetColor.r, offsetColor.g, offsetColor.b);    
     }
 
-
+    
     private bool IsMoveValid(Vector2 startPoint, Vector2 endPoint, float offSetX, float offSetY)
     {
 
@@ -103,6 +103,14 @@ public class Tile : MonoBehaviour
         }
         else
         {
+            if (UnitManager.instance.selectedBall.type == Type.GhostBall)
+            {
+                SetUnit(UnitManager.instance.selectedBall);
+                UnitManager.instance.SetSelectedBall(null);
+                GameManager.instance.ChangeState(GameState.EndTurn);
+                return;
+            }
+
 
             Vector2 startPoint = UnitManager.instance.selectedBall.transform.position;
             Vector2 endPoint = this.transform.position;

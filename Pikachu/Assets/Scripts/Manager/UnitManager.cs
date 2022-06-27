@@ -20,7 +20,7 @@ public class UnitManager : MonoBehaviour
 
     public void SpawnBall()
     {
-        int ballCount = 30;
+        int ballCount = 20;
         for (int i = 0; i < ballCount; ++i)
         {
             var randomPrefab = GetRandomUnit<BaseBall>(Type.Ball);
@@ -47,6 +47,20 @@ public class UnitManager : MonoBehaviour
 
         }
     }
+    
+    public void SpawnGhostBall()
+    {
+        int ballCount = 3;
+        for (int i = 0; i < ballCount; ++i)
+        {
+            var randomPrefab = GetRandomUnit<BaseBall>(Type.GhostBall);
+            var spawnedBall = Instantiate(randomPrefab);
+            var randomSpawnedTile = GridManager.instance.GetSpawnedTile();
+
+            randomSpawnedTile.SetUnit(spawnedBall);
+        }
+    }
+
     public void DequeueBall()
     {
         foreach (BaseBall ball in queuedBalls)

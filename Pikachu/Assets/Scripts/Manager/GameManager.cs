@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.SpawnBall:
                 UnitManager.instance.SpawnBall();
+                UnitManager.instance.SpawnGhostBall();
                 break;
             case GameState.StartTurn:
                 UnitManager.instance.SpawnQueueBall();

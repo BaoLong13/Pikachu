@@ -99,3 +99,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   occupiedTile: {fileID: 0}
   type: 0
+  spriteRenderer: {fileID: 8178052733143255458}
