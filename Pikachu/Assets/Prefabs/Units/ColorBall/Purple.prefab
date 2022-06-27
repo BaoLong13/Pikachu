@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1547583920878801872}
   - component: {fileID: 1547583920878801879}
   - component: {fileID: 5131151205509582477}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Purple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 6
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.5724354, g: 0, b: 1, a: 1}
   m_FlipX: 0
@@ -98,3 +98,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   occupiedTile: {fileID: 0}
+  type: 0
+  spriteRenderer: {fileID: 0}

@@ -20,7 +20,60 @@ public class Tile : MonoBehaviour
     }
 
 
+    private bool IsMoveValid(Vector2 startPoint, Vector2 endPoint, float offSetX, float offSetY)
+    {
 
+        if (offSetY == 0)
+        {
+            if (offSetX > 0f)
+            {
+                for (float i = startPoint.x + 1; i < startPoint.x + offSetX; ++i)
+                {
+                    if (GridManager.instance.GetTileAtPosition(new Vector2(i, startPoint.y)).occupiedUnit != null)
+                    {
+                        Debug.Log(GridManager.instance.GetTileAtPosition(new Vector2(i, startPoint.y)).occupiedUnit != null);
+                        return false;
+                    }
+                }
+            }
+            else
+            {
+                for (float i = startPoint.x - 1; i > startPoint.x + offSetX; --i)
+                {
+                    if (GridManager.instance.GetTileAtPosition(new Vector2(i, startPoint.y)).occupiedUnit != null)
+                    {
+                        Debug.Log(GridManager.instance.GetTileAtPosition(new Vector2(i, startPoint.y)).occupiedUnit != null);
+                        return false;
+                    }
+                }
+            }
+        }
+        else if (offSetX == 0)
+        {
+            if (offSetY > 0f)
+            {
+                for (float j = startPoint.y + 1; j < startPoint.y + offSetY; ++j)
+                {
+                    if (GridManager.instance.GetTileAtPosition(new Vector2(startPoint.x, j)).occupiedUnit != null)
+                    {
+                        return false;
+                    }
+                }
+            }
+            else
+            {
+                for (float j = startPoint.y - 1; j > startPoint.y + offSetY; --j)
+                {
+                    if (GridManager.instance.GetTileAtPosition(new Vector2(startPoint.x, j)).occupiedUnit != null)
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+     
+    }
     private void OnMouseEnter()
     {
        highlight.SetActive(true);
@@ -40,6 +93,7 @@ public class Tile : MonoBehaviour
 
         if (occupiedUnit != null)
         {
+
             if (occupiedUnit.type != Type.QueueBall)
             {
                 UnitManager.instance.SetSelectedBall(occupiedUnit);
@@ -47,19 +101,36 @@ public class Tile : MonoBehaviour
         }
         else
         {
+
+            Vector2 startPoint = UnitManager.instance.selectedBall.transform.position;
+            Vector2 endPoint = this.transform.position;
+
+            float offSetX = endPoint.x - startPoint.x;
+            float offSetY = endPoint.y - startPoint.y;
+
+            Debug.Log(offSetX + "  " + offSetY);
+
             if (UnitManager.instance.selectedBall != null)
             {
-                if (UnitManager.instance.selectedBall.transform.position.x - this.transform.position.x != 0 
-                    && UnitManager.instance.selectedBall.transform.position.y - this.transform.position.y != 0)
+                if (offSetX != 0 && offSetY != 0)
                 {
                     Debug.Log("Invalid Move");
                 }
-                else if (UnitManager.instance.selectedBall.transform.position.x - this.transform.position.x != 0 
-                    || UnitManager.instance.selectedBall.transform.position.y - this.transform.position.y != 0)
+
+                else if (offSetX != 0 || offSetY != 0)
                 {
-                    SetUnit(UnitManager.instance.selectedBall);
-                    UnitManager.instance.SetSelectedBall(null);
+                    Debug.Log(IsMoveValid(startPoint, endPoint, offSetX, offSetY));
+                    if (IsMoveValid(startPoint, endPoint, offSetX, offSetY))
+                    {
+                        SetUnit(UnitManager.instance.selectedBall);
+                        UnitManager.instance.SetSelectedBall(null);
+                    }
+                    else
+                    {
+                        Debug.Log("Invalid Move");
+                    }
                 }
+
             }
         }
     }
