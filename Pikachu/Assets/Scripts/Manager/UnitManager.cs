@@ -39,6 +39,7 @@ public class UnitManager : MonoBehaviour
         {
             var randomPrefab = GetRandomUnit<BaseBall>(Type.QueueBall);
             var spawnedBall = Instantiate(randomPrefab);
+            spawnedBall.type = Type.QueueBall;
             var randomSpawnedTile = GridManager.instance.GetSpawnedTile();
 
             queuedBalls.Add(spawnedBall); // Save queueBall current position
