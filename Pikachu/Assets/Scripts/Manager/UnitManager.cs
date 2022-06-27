@@ -41,7 +41,7 @@ public class UnitManager : MonoBehaviour
             var spawnedBall = Instantiate(randomPrefab);
             var randomSpawnedTile = GridManager.instance.GetSpawnedTile();
 
-            queuedBalls.Add(spawnedBall);
+            queuedBalls.Add(spawnedBall); // Save queueBall current position
 
             randomSpawnedTile.SetUnit(spawnedBall);
 
@@ -68,7 +68,7 @@ public class UnitManager : MonoBehaviour
             if (ball != null)
             {
                 BaseBall newBall = ball;
-                newBall.transform.localScale = Vector3.one;
+                newBall.transform.localScale = Vector3.one; // Change size to fit ColorBall
                 newBall.type = Type.Ball;
                 ball.occupiedTile.SetUnit(newBall);
             }

@@ -8,7 +8,9 @@ public class Tile : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private GameObject highlight;
 
-    public BaseBall occupiedUnit;
+    public BaseBall occupiedUnit = null;
+
+    
 
     public bool Walkable => occupiedUnit == null;
 
@@ -19,11 +21,9 @@ public class Tile : MonoBehaviour
                                new Color(offsetColor.r, offsetColor.g, offsetColor.b);    
     }
 
-    
     private bool IsMoveValid(Vector2 startPoint, Vector2 endPoint, float offSetX, float offSetY)
     {
-
-        if (offSetY == 0)
+        if (offSetY == 0) // Horizontal movement
         {
             if (offSetX > 0f)
             {
@@ -48,9 +48,9 @@ public class Tile : MonoBehaviour
                 }
             }
         }
-        else if (offSetX == 0)
+        else if (offSetX == 0) // Vertical movement
         {
-            if (offSetY > 0f)
+            if (offSetY > 0f) 
             {
                 for (float j = startPoint.y + 1; j < startPoint.y + offSetY; ++j)
                 {
@@ -96,14 +96,14 @@ public class Tile : MonoBehaviour
         if (occupiedUnit != null)
         {
 
-            if (occupiedUnit.type != Type.QueueBall)
+            if (occupiedUnit.type != Type.QueueBall)    // Queue ball does not occupy tile
             {
                 UnitManager.instance.SetSelectedBall(occupiedUnit);
             }
         }
         else
         {
-            if (UnitManager.instance.selectedBall.type == Type.GhostBall)
+            if (UnitManager.instance.selectedBall.type == Type.GhostBall) // Ghost ball move freely
             {
                 SetUnit(UnitManager.instance.selectedBall);
                 UnitManager.instance.SetSelectedBall(null);
@@ -118,11 +118,9 @@ public class Tile : MonoBehaviour
             float offSetX = endPoint.x - startPoint.x;
             float offSetY = endPoint.y - startPoint.y;
 
-            Debug.Log(offSetX + "  " + offSetY);
-
             if (UnitManager.instance.selectedBall != null)
             {
-                if (offSetX != 0 && offSetY != 0)
+                if (offSetX != 0 && offSetY != 0) // No diagonal movement
                 {
                     Debug.Log("Invalid Move");
                 }

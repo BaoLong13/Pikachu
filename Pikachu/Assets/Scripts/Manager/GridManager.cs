@@ -34,6 +34,7 @@ public class GridManager : MonoBehaviour
                 tiles[new Vector2(i, j)] = spawnedTile;
             }
         }
+        // Center Camera
         cam.transform.position = new Vector3((float)width/2 - 0.5f, (float)height/2 - 0.5f, -10);
         GameManager.instance.ChangeState(GameState.SpawnBall);
     }
